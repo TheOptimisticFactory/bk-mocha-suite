@@ -1,6 +1,6 @@
 'use strict';
 
-const { assert } = require('chai');
+const { assert, expect } = require('chai');
 const chalk = require('chalk');
 const config = require('config');
 const ErrorStackParser = require('error-stack-parser');
@@ -363,6 +363,10 @@ module.exports = function (params, ctx, f) {
     }
 
     return assert.fail(unexpectedBehavior, null, unexpectedBehavior.message);
+  }
+
+  TestSuit.expectToBeNull = function (value) {
+    return expect(value).to.be.null;
   }
 
   TestSuit.replaceWith = function (suit, newSuit) {
