@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/muonjs/mocha-suit#readme",
   "dependencies": {
-    "config": "3.1.0",
-    "error-stack-parser": "2.0.2",
+    "config": "3.2.4",
+    "error-stack-parser": "2.0.4",
     "underscore": "^1.9.1",
     "yn": ">=2.X"
   },
