@@ -1,7 +1,7 @@
 {
   "name": "@sportheroes/bk-mocha-suite",
   "version": "1.16.2",
-  "description": "Suite for your mocha tests",
+  "description": "Suite for your mocha tests. Originally forked from https://github.com/muonjs/mocha-suit",
   "main": "app.js",
   "scripts": {
     "release": "bk-standard-version",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/muonjs/mocha-suit.git"
+    "url": "git+https://github.com/TheOptimisticFactory/bk-mocha-suite.git"
   },
   "keywords": [
     "mocha",
@@ -18,12 +18,12 @@
     "suit",
     "jasmine"
   ],
-  "author": "Sukharev Kirill <SukharevKirill@gmail.com>",
+  "author": "Romain Gagnaire <romain.gagnaire.pro@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/muonjs/mocha-suit/issues"
+    "url": "https://github.com/TheOptimisticFactory/bk-mocha-suite/issues"
   },
-  "homepage": "https://github.com/muonjs/mocha-suit#readme",
+  "homepage": "https://github.com/TheOptimisticFactory/bk-mocha-suite#readme",
   "dependencies": {
     "config": "3.2.4",
     "error-stack-parser": "2.0.4",
@@ -32,7 +32,7 @@
   },
   "types": "./mocha-suit.d.ts",
   "devDependencies": {
-    "@sportheroes/bk-standard-version": "5.0.1",
+    "@joethefkingfrypan/bk-standard-version": "5.2.0",
     "bluebird": "^3.5.2",
     "chai": "4.2.0",
     "chalk": "2.4.2",
