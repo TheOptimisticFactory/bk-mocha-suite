@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.17.1"></a>
+## [1.17.1](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.17.0...v1.17.1) (2020-03-23)
+
+
+### 🔄 Notable changes
+
+* **Core**: Added support of `APP.NAME` constant ([ec7bf71](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/ec7bf71) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.17.0"></a>
 # [1.17.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.16.2...v1.17.0) (2019-11-06)
 
