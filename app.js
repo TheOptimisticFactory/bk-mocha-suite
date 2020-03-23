@@ -59,7 +59,7 @@ const reportMissingField = (params, name) => {
   if (name === 'project') {
     console.error(blue('To fix it you can either:'));
     console.error(blue('- set process.env.APP_NAME at runtime'));
-    console.error(blue('- add "APP_NAME" property in your configuration file'));
+    console.error(blue('- add either "APP.NAME" or "APP_NAME" property in your configuration file'));
     console.error(blue('- add "project" property in your Suite factory payload'));
   }
 
@@ -82,7 +82,7 @@ module.exports = function (params, ctx, f) {
   let { project, category, service, method } = params;
 
   if (!project) {
-    project = config.APP_NAME || process.env.APP_NAME;
+    project = (config.APP || {}).NAME || config.APP_NAME || process.env.APP_NAME;
 
     if (!project) {
       reportMissingField(params, 'project');
