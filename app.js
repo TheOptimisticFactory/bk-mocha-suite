@@ -352,20 +352,27 @@ module.exports = function (params, ctx, f) {
     return sinon.assert.calledWithMatch(spy, expectations);
   };
 
-  TestSuit.expectRejection = async function expectRejection(handler, errorMessage = null, errorProperties = null) {
+  TestSuit.expectRejection = async function expectRejection(handler, errorMessage = null) {
     let unexpectedBehavior;
 
     try {
       await handler();
       unexpectedBehavior = new Error(`Handler finished without throwing the expected error message: ${errorMessage}`);
     } catch (error) {
-      if (errorMessage) {
-        error.message.should.deep.equal(errorMessage);
-      }
+      return error.message.should.deep.equal(errorMessage);
+    }
 
-      if (errorProperties) {
-        error.should.shallowDeepEqual(errorProperties)
-      }
+    return assert.fail(unexpectedBehavior, null, unexpectedBehavior.message);
+  }
+
+  TestSuit.expectRejectionWithProperties = async function expectRejection(handler, errorProperties) {
+    let unexpectedBehavior;
+
+    try {
+      await handler();
+      unexpectedBehavior = new Error(`Handler finished without throwing the expected error message: ${errorMessage}`);
+    } catch (error) {
+      error.should.shallowDeepEqual(errorProperties)
 
       return error;
     }
