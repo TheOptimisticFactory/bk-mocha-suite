@@ -366,13 +366,20 @@ module.exports = function (params, ctx, f) {
   }
 
   TestSuit.expectRejectionWithProperties = async function expectRejection(handler, errorProperties) {
+    const contextualError = new Error(`Mismatching error properties`);
     let unexpectedBehavior;
 
     try {
       await handler();
       unexpectedBehavior = new Error(`Handler finished without throwing the expected error message: ${errorMessage}`);
     } catch (error) {
-      error.should.shallowDeepEqual(errorProperties)
+      try {
+        error.should.shallowDeepEqual(errorProperties)
+      } catch (mismatchError) {
+        contextualError.message = `${contextualError.message} > ${mismatchError.message}`
+
+        throw contextualError;
+      }
 
       return error;
     }
