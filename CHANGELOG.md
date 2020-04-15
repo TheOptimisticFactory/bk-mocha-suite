@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.18.0"></a>
+# [1.18.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.17.1...v1.18.0) (2020-04-15)
+
+
+### ✅ Features
+
+* **Dependencies**: Moved most dependencies into peerDependencies section ([eb19347](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/eb19347) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+### 🔄 Notable changes
+
+* **Core**: Added ability to shallow deep equal expected error ([63bb76d](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/63bb76d) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.17.1"></a>
 ## [1.17.1](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.17.0...v1.17.1) (2020-03-23)
 
