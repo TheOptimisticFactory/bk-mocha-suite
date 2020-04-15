@@ -25,23 +25,26 @@
   },
   "homepage": "https://github.com/TheOptimisticFactory/bk-mocha-suite#readme",
   "dependencies": {
-    "config": "3.2.4",
-    "error-stack-parser": "2.0.4",
-    "underscore": "^1.9.1",
+    "error-stack-parser": "2.0.6",
+    "underscore": "^1.10.2",
     "yn": ">=2.X"
   },
   "types": "./mocha-suit.d.ts",
   "devDependencies": {
     "@joethefkingfrypan/bk-standard-version": "5.2.0",
-    "bluebird": "^3.5.2",
+    "chai-shallow-deep-equal": "1.X",
     "chai": "4.2.0",
-    "chalk": "2.4.2",
+    "chalk": "4.X",
+    "config": "3.X",
     "expect.js": "^0.3.1",
-    "mocha": "^3.4.2",
-    "should": "^11.2.1",
-    "sinon": "7.3.2"
+    "mocha": ">=3.X <8.X",
+    "sinon": ">=7.X",
+    "should": "^13.2.3"
   },
   "peerDependencies": {
     "chai-shallow-deep-equal": "1.X",
+    "config": "3.X",
+    "mocha": ">=3.X <8.X",
+    "sinon": ">=7.X"
   }
 }
