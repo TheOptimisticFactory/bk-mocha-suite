@@ -40,5 +40,8 @@
     "mocha": "^3.4.2",
     "should": "^11.2.1",
     "sinon": "7.3.2"
+  },
+  "peerDependencies": {
+    "chai-shallow-deep-equal": "1.X",
   }
 }
