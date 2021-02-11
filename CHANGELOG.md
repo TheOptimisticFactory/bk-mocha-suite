@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.20.0"></a>
+# [1.20.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.18.2...v1.20.0) (2021-02-11)
+
+
+### ✅ Features
+
+* **Dependencies**: Swtiched to chai-better-shallow-deep-equal for better diffs ([5b467df](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/5b467df) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.18.2"></a>
 ## [1.18.2](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.18.1...v1.18.2) (2020-04-15)
 
