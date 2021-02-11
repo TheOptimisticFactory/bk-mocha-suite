@@ -352,7 +352,7 @@ module.exports = function (params, ctx, f) {
     return sinon.assert.calledWithMatch(spy, expectations);
   };
 
-  TestSuit.expectRejection = async function expectRejection(handler, errorMessage = null) {
+  TestSuit.expectRejectionMessage = async function expectRejection(handler, errorMessage = null) {
     let unexpectedBehavior;
 
     try {
@@ -365,6 +365,7 @@ module.exports = function (params, ctx, f) {
     return assert.fail(unexpectedBehavior, null, unexpectedBehavior.message);
   }
 
+  TestSuit.expectRejectionMessage = (...params) => TestSuit.expectRejection(...params);
   TestSuit.expectRejectionWithProperties = async function expectRejection(handler, errorProperties) {
     const contextualError = new Error(`Mismatching error properties`);
     let unexpectedBehavior;
@@ -376,7 +377,7 @@ module.exports = function (params, ctx, f) {
       try {
         error.should.shallowDeepEqual(errorProperties)
       } catch (mismatchError) {
-        contextualError.message = `${contextualError.message} > ${mismatchError.message}`
+        contextualError.message = `${contextualError.message} > ${mismatchError.message.replace('\n', '')}`;
 
         throw contextualError;
       }
@@ -389,6 +390,10 @@ module.exports = function (params, ctx, f) {
 
   TestSuit.expectToBeNull = function (value) {
     return expect(value).to.be.null;
+  }
+
+  TestSuit.expectToBeUndefined = function (value) {
+    return expect(value).to.be.undefined;
   }
 
   TestSuit.replaceWith = function (suit, newSuit) {
