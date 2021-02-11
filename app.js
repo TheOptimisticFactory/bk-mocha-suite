@@ -346,12 +346,14 @@ module.exports = function (params, ctx, f) {
 
   TestSuit.assertMatchBetween = function assertMatchBetween(payload, expectations) {
     const spy = sinon.spy();
+    const jsonPayload = payload?.toJSON?.() || payload;
 
-    spy(payload);
+    spy(jsonPayload);
 
     return sinon.assert.calledWithMatch(spy, expectations);
   };
 
+  TestSuit.expectMatchBetween = (...params) => TestSuit.assertMatchBetween(...params);
   TestSuit.expectRejectionMessage = async function expectRejection(handler, errorMessage = null) {
     let unexpectedBehavior;
 
