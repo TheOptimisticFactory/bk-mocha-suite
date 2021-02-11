@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.20.1"></a>
+## [1.20.1](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.20.0...v1.20.1) (2021-02-11)
+
+
+### 🔄 Notable changes
+
+* **Core**: Added `expectMatchBetween` method ([205200b](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/205200b) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.20.0"></a>
 # [1.20.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.18.2...v1.20.0) (2021-02-11)
 
