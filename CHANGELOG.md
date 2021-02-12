@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.20.2"></a>
+## [1.20.2](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.20.1...v1.20.2) (2021-02-12)
+
+
+### 🔄 Notable changes
+
+* **Core**: Improved rejection expectation handlers ([c709a9e](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/c709a9e) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.20.1"></a>
 ## [1.20.1](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.20.0...v1.20.1) (2021-02-11)
 
