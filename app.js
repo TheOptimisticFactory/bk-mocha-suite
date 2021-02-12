@@ -346,35 +346,39 @@ module.exports = function (params, ctx, f) {
 
   TestSuit.assertMatchBetween = function assertMatchBetween(payload, expectations) {
     const spy = sinon.spy();
-    const jsonPayload = payload?.toJSON?.() || payload;
+    const rawPayload = payload?.toJSON?.() || payload;
+    const finalPayload = (rawPayload) ? JSON.parse(JSON.stringify(rawPayload)) : rawPayload;
 
-    spy(jsonPayload);
+    spy(finalPayload);
 
     return sinon.assert.calledWithMatch(spy, expectations);
   };
 
   TestSuit.expectMatchBetween = (...params) => TestSuit.assertMatchBetween(...params);
   TestSuit.expectRejectionMessage = async function expectRejection(handler, errorMessage = null) {
-    let unexpectedBehavior;
+    const contextualError = new Error(`Mismatching error properties`);
 
     try {
       await handler();
-      unexpectedBehavior = new Error(`Handler finished without throwing the expected error message: ${errorMessage}`);
+
+      contextualError.message = 'Handler finished without throwing any error';
+
+      throw contextualError;
     } catch (error) {
       return error.message.should.deep.equal(errorMessage);
     }
-
-    return assert.fail(unexpectedBehavior, null, unexpectedBehavior.message);
   }
 
   TestSuit.expectRejectionMessage = (...params) => TestSuit.expectRejection(...params);
   TestSuit.expectRejectionWithProperties = async function expectRejection(handler, errorProperties) {
     const contextualError = new Error(`Mismatching error properties`);
-    let unexpectedBehavior;
 
     try {
       await handler();
-      unexpectedBehavior = new Error(`Handler finished without throwing the expected error message: ${errorMessage}`);
+
+      contextualError.message = 'Handler finished without throwing any error';
+
+      throw contextualError;
     } catch (error) {
       try {
         error.should.shallowDeepEqual(errorProperties)
@@ -386,8 +390,6 @@ module.exports = function (params, ctx, f) {
 
       return error;
     }
-
-    return assert.fail(unexpectedBehavior, null, unexpectedBehavior.message);
   }
 
   TestSuit.expectToBeNull = function (value) {
