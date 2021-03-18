@@ -44,7 +44,7 @@
   "peerDependencies": {
     "chai-better-shallow-deep-equal": "1.X",
     "config": "3.X",
-    "mocha": ">=3.X <8.X",
+    "mocha": ">=3.X <9.X",
     "sinon": ">=7.X"
   }
 }
