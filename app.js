@@ -351,7 +351,10 @@ module.exports = function (params, ctx, f) {
 
     spy(finalPayload);
 
-    return sinon.assert.calledWithMatch(spy, expectations);
+    // Preferentially use "calledWithMatch" method from sinon-chai when available (better diffs output). Otherwise fallback on regular sinon assertion.
+    return (spy.should?.have?.been?.calledWithMatch)
+      ? spy.should.have.been.calledWithMatch(expectations)
+      : sinon.assert.calledWithMatch(spy, expectations);
   };
 
   TestSuit.expectMatchBetween = (...params) => TestSuit.assertMatchBetween(...params);
