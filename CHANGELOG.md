@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.22.0"></a>
+# [1.22.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.21.0...v1.22.0) (2021-03-19)
+
+
+### ✅ Features
+
+* **Core**: Added support of sinon-chain diffs ([9b74ca7](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/9b74ca7) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.21.0"></a>
 # [1.21.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.20.2...v1.21.0) (2021-03-18)
 
