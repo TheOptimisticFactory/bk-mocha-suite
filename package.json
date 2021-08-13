@@ -37,14 +37,14 @@
     "chalk": "4.X",
     "config": "3.X",
     "expect.js": "^0.3.1",
-    "mocha": ">=3.X <8.X",
+    "mocha": ">=3.X <10.X",
     "sinon": ">=7.X",
     "should": "^13.2.3"
   },
   "peerDependencies": {
     "chai-better-shallow-deep-equal": "1.X",
     "config": "3.X",
-    "mocha": ">=3.X <9.X",
+    "mocha": ">=3.X <10.X",
     "sinon": ">=7.X"
   }
 }
