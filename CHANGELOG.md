@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.0"></a>
+# [1.23.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.22.0...v1.23.0) (2021-08-13)
+
+
+### ✅ Features
+
+* **Package**: Added support of `mocha v9.X` ([3ace558](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/3ace558) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.22.0"></a>
 # [1.22.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.21.0...v1.22.0) (2021-03-19)
 
