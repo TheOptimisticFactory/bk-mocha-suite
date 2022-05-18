@@ -2,6 +2,8 @@
 // Project: Mocha Suit
 // Definitions by: Sukharev Kirill <SukharevKirill@gmail.com>
 
+/// <reference types="dirty-chai" />
+
 declare type Suit = { [key:string]: any } & { [key:number]: any };
 declare type TestSet = { testSet: boolean; } & { [key:string]: Suit; }
 
@@ -11,7 +13,7 @@ declare interface ExtendMethod {
 }
 
 declare interface CallBack {
-    (this: MochaSuitFactory, done?: (err?: any) => void): Promise<void> | void;
+    (this: MochaSuitFactory, done?: (err?: any) => void): Promise<void|Assertion> | void | Assertion;
 }
 
 declare interface SetupMethod {
