@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.1"></a>
+## [1.23.1](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.0...v1.23.1) (2022-05-18)
+
+
+### 🔄 Notable changes
+
+* **Package**: Added support of dirty-chai assertions in typescript definitions ([6a83b7d](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/6a83b7d) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+* **Package**: Updated typescript definitions to match added methods ([2d85745](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/2d85745) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.23.0"></a>
 # [1.23.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.22.0...v1.23.0) (2021-08-13)
 
