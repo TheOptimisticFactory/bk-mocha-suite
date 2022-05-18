@@ -51,28 +51,40 @@ declare interface MochaSuitFactory {
     (testSet: TestSet): void;
     (suits: Suit[]): void;
     (suit: Suit): void;
-    extend: ExtendMethod;
-    before: SetupMethod;
-    beforeAll: SetupMethod;
-    beforeEach: SetupMethod;
     after: TeardownMethod;
     afterAll: TeardownMethod;
     afterEach: TeardownMethod;
+    assertMatchBetween: (payload:any, expectations:any) => void;
+    expectMatchBetween: (payload:any, expectations:any) => void;
+    expectRejectionMessage: (handler:Function, errorMessage:string) => void;
+    expectRejectionWithProperties: (handler:Function, errorProperties:object) => void;
+    expectToBeNull: (value:any) => void;
+    expectToBeUndefined: (value:any) => void;
+    before: SetupMethod;
+    beforeAll: SetupMethod;
+    beforeEach: SetupMethod;
+    extend: ExtendMethod;
     it: TestMethod;
-    xit: TestMethod;
-    that: TestMethod;
-    xthat: TestMethod;
     only: TestMethod;
-    with: WithMethod;
     replaceWith: ReplaceMethod;
-    setBefore: SetMethod;
+    run: () => void;
     setAfter: SetMethod;
-    setBeforeAll: SetMethod;
     setAfterAll: SetMethod;
+    setBefore: SetMethod;
+    setBeforeAll: SetMethod;
+    stubContext: (overrides:Object) => Object;
+    stubReturning: (params:any) => Function;
+    stubResolving: (params:any) => Function;
+    stubRejecting: (params:any) => Function;
+    timeout: (duration:number) => void;
+    that: TestMethod;
+    with: WithMethod;
+    xit: TestMethod;
+    xthat: TestMethod;
     [key:string]: MochaSuitFactory | Function | Suit
 }
 
-
-declare function MochaSuitModule(name?: string): MochaSuitFactory;
+declare type SuiteOptions = { category:string, method: string, project?:string, service:string }
+declare function MochaSuitModule(options: SuiteOptions): MochaSuitFactory;
 
 export = MochaSuitModule;
