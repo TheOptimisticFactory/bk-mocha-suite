@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.3"></a>
+## [1.23.3](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.2...v1.23.3) (2022-05-19)
+
+
+### ✅ Features
+
+* **Core**: Added ability to toggle auto-fallback on deep match ([38da333](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/38da333) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.23.2"></a>
 ## [1.23.2](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.1...v1.23.2) (2022-05-19)
 
