@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.2"></a>
+## [1.23.2](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.1...v1.23.2) (2022-05-19)
+
+
+### ✅ Features
+
+* **Core**: Added ability to get nested diffs for easier troubleshooting ([6d39688](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/6d39688) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.23.1"></a>
 ## [1.23.1](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.0...v1.23.1) (2022-05-18)
 
