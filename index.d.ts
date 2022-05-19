@@ -56,6 +56,8 @@ declare interface MochaSuitFactory {
     after: TeardownMethod;
     afterAll: TeardownMethod;
     afterEach: TeardownMethod;
+    assertDeepMatchBetween: (payload:any, expectations:any) => void;
+    expectDeepMatchBetween: (payload:any, expectations:any) => void;
     assertMatchBetween: (payload:any, expectations:any) => void;
     expectMatchBetween: (payload:any, expectations:any) => void;
     expectRejectionMessage: (handler:Function, errorMessage:string) => void;

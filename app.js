@@ -344,6 +344,79 @@ module.exports = function (params, ctx, f) {
     return stub;
   };
 
+  TestSuit.assertDeepMatchBetween = function assertDeepMatchBetween(payload, expectations) {
+    const rawPayload = payload?.toJSON?.() || payload;
+    const finalPayload = (rawPayload) ? JSON.parse(JSON.stringify(rawPayload)) : rawPayload;
+    const isObject = Boolean(finalPayload !== null && typeof finalPayload === 'object' && !Array.isArray(finalPayload));
+    const spy = sinon.spy();
+
+    if (!isObject) {
+      spy(finalPayload);
+
+      // Preferentially use "calledWithMatch" method from sinon-chai when available (better diffs output). Otherwise fallback on regular sinon assertion.
+      return (spy.should?.have?.been?.calledWithMatch)
+        ? spy.should.have.been.calledWithMatch(expectations)
+        : sinon.assert.calledWithMatch(spy, expectations);
+    }
+
+    const checkIsArray = element => Boolean(element !== null && Array.isArray(element));
+    const checkIsObject = element => Boolean(element !== null && !Array.isArray(element) && typeof element === 'object');
+
+    const validateObjectProperties = ({ currentExpectations, currentReference, parents }) => {
+      const checkForMatch = currentKey => {
+        const referenceValue = (currentKey) ? currentReference?.[currentKey] : currentReference;
+        const expectedValue = (currentKey) ? currentExpectations?.[currentKey] : currentExpectations;
+
+        spy.resetHistory();
+        spy(referenceValue)
+
+        try {
+          (spy.should?.have?.been?.calledWithMatch)
+            ? spy.should.have.been.calledWithMatch(expectedValue)
+            : sinon.assert.calledWithMatch(spy, expectedValue)
+        } catch (error) {
+          const parentPrefix = (parents.length) ? `${parents.join('.')}.` : '';
+          const completeKey = `${parentPrefix}${currentKey || '<root>'}`;
+
+          throw new Error(`Mismatch on property '${completeKey}' > FOUND: ${currentKey}: ${referenceValue} | EXPECTED: ${currentKey}: ${expectedValue}`);
+        }
+      }
+
+      const keys = {
+        default: [],
+        nested: [],
+      };
+
+      const finalKeys = Object.keys(currentReference || {}).sort().reduce((results, currentKey) => {
+        const targetArray = (checkIsArray(currentReference[currentKey]) || checkIsObject(currentReference[currentKey]))
+          ? results.nested
+          : results.default;
+
+        targetArray.push(currentKey);
+
+        return results;
+      }, keys);
+
+      // The use of "forEach" is prefered so that return statements will not break the loop
+      finalKeys.nested.forEach(nestedKey => {
+        validateObjectProperties({
+          currentExpectations: currentExpectations[nestedKey],
+          currentReference: currentReference[nestedKey],
+          parents: [ ...parents, nestedKey ],
+        });
+      });
+
+      finalKeys.default.forEach(currentKey => checkForMatch(currentKey));
+    }
+
+    return validateObjectProperties({
+      currentExpectations: expectations,
+      currentReference:  finalPayload,
+      parents: [],
+    })
+  };
+
+  TestSuit.expectDeepMatchBetween = (...params) => TestSuit.assertDeepMatchBetween(...params);
   TestSuit.assertMatchBetween = function assertMatchBetween(payload, expectations) {
     const spy = sinon.spy();
     const rawPayload = payload?.toJSON?.() || payload;
