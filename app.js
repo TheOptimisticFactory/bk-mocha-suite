@@ -425,9 +425,18 @@ module.exports = function (params, ctx, f) {
     spy(finalPayload);
 
     // Preferentially use "calledWithMatch" method from sinon-chai when available (better diffs output). Otherwise fallback on regular sinon assertion.
-    return (spy.should?.have?.been?.calledWithMatch)
+    try {
+      (spy.should?.have?.been?.calledWithMatch)
       ? spy.should.have.been.calledWithMatch(expectations)
       : sinon.assert.calledWithMatch(spy, expectations);
+    } catch (err) {
+      if (config?.APP?.TESTS_DEEP_MATCH_FALLBACK_STRATEGY) {
+        return TestSuit.assertDeepMatchBetween(payload, expectations);
+      }
+
+      throw err;
+    }
+
   };
 
   TestSuit.expectMatchBetween = (...params) => TestSuit.assertMatchBetween(...params);
