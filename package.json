@@ -39,7 +39,7 @@
     "dirty-chai": "2.X",
     "config": "3.X",
     "expect.js": "^0.3.1",
-    "mocha": ">=3.X <10.X",
+    "mocha": ">=3.X <11.X",
     "sinon": ">=7.X",
     "should": "^13.2.3"
   },
@@ -48,7 +48,7 @@
     "chai-better-shallow-deep-equal": "1.X",
     "config": "3.X",
     "dirty-chai": "2.X",
-    "mocha": ">=3.X <10.X",
+    "mocha": ">=3.X <11.X",
     "sinon": ">=7.X"
   }
 }
