@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.5"></a>
+## [1.23.5](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.4...v1.23.5) (2022-11-15)
+
+
+### ✴️ Bug Fixes
+
+* **Core**: Handled case where expectation object is lacking nested property ([75f239a](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/75f239a) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.23.4"></a>
 ## [1.23.4](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.3...v1.23.4) (2022-05-24)
 
