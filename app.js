@@ -400,7 +400,7 @@ module.exports = function (params, ctx, f) {
       // The use of "forEach" is prefered so that return statements will not break the loop
       finalKeys.nested.forEach(nestedKey => {
         validateObjectProperties({
-          currentExpectations: currentExpectations[nestedKey],
+          currentExpectations: currentExpectations?.[nestedKey],
           currentReference: currentReference[nestedKey],
           parents: [ ...parents, nestedKey ],
         });
