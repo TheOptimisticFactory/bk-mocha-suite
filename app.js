@@ -344,19 +344,25 @@ module.exports = function (params, ctx, f) {
     return stub;
   };
 
-  TestSuit.assertDeepMatchBetween = function assertDeepMatchBetween(payload, expectations) {
+  TestSuit.assertDeepMatchBetween = function assertDeepMatchBetween(payload, expectations, options) {
     const rawPayload = payload?.toJSON?.() || payload;
-    const finalPayload = (rawPayload) ? JSON.parse(JSON.stringify(rawPayload)) : rawPayload;
+    const finalPayload = (rawPayload && (typeof rawPayload !== 'error')) ? JSON.parse(JSON.stringify(rawPayload)) : rawPayload;
     const isObject = Boolean(finalPayload !== null && typeof finalPayload === 'object' && !Array.isArray(finalPayload));
     const spy = sinon.spy();
 
     if (!isObject) {
       spy(finalPayload);
 
-      // Preferentially use "calledWithMatch" method from sinon-chai when available (better diffs output). Otherwise fallback on regular sinon assertion.
-      return (spy.should?.have?.been?.calledWithMatch)
-        ? spy.should.have.been.calledWithMatch(expectations)
-        : sinon.assert.calledWithMatch(spy, expectations);
+      try {
+        // Preferentially use "calledWithMatch" method from sinon-chai when available (better diffs output). Otherwise fallback on regular sinon assertion.
+        return (spy.should?.have?.been?.calledWithMatch)
+          ? spy.should.have.been.calledWithMatch(expectations)
+          : sinon.assert.calledWithMatch(spy, expectations)
+      } catch (error) {
+        error.message = `Mismatch on provided values >\nFOUND:\n\t${JSON.stringify(finalPayload)}\n\nEXPECTED:\n\t${JSON.stringify(expectations)}`;
+
+        throw error;
+      }
     }
 
     const checkIsArray = element => Boolean(element !== null && Array.isArray(element));
@@ -371,14 +377,21 @@ module.exports = function (params, ctx, f) {
         spy(referenceValue)
 
         try {
-          (spy.should?.have?.been?.calledWithMatch)
-            ? spy.should.have.been.calledWithMatch(expectedValue)
-            : sinon.assert.calledWithMatch(spy, expectedValue)
+          const shouldBypass = Boolean(options?.shallowDeepEqual && expectedValue === undefined);
+
+          if (!shouldBypass) {
+            // Preferentially use "calledWithMatch" method from sinon-chai when available (better diffs output). Otherwise fallback on regular sinon assertion.
+            (spy.should?.have?.been?.calledWithMatch)
+              ? spy.should.have.been.calledWithMatch(expectedValue)
+              : sinon.assert.calledWithMatch(spy, expectedValue)
+          }
         } catch (error) {
           const parentPrefix = (parents.length) ? `${parents.join('.')}.` : '';
           const completeKey = `${parentPrefix}${currentKey || '<root>'}`;
 
-          throw new Error(`Mismatch on property '${completeKey}' > FOUND: ${currentKey}: ${referenceValue} | EXPECTED: ${currentKey}: ${expectedValue}`);
+          error.message = `Mismatch on property '${completeKey}' >\nFOUND:\n\t${currentKey}: ${JSON.stringify(referenceValue)}\n\nEXPECTED:\n\t${currentKey}: ${JSON.stringify(expectedValue)}`;
+
+          throw error;
         }
       }
 
@@ -397,16 +410,17 @@ module.exports = function (params, ctx, f) {
         return results;
       }, keys);
 
-      // The use of "forEach" is prefered so that return statements will not break the loop
-      finalKeys.nested.forEach(nestedKey => {
+      for (const currentKey of finalKeys.default) {
+        checkForMatch(currentKey);
+      }
+
+      for (const nestedKey of finalKeys.nested) {
         validateObjectProperties({
           currentExpectations: currentExpectations?.[nestedKey],
           currentReference: currentReference[nestedKey],
           parents: [ ...parents, nestedKey ],
         });
-      });
-
-      finalKeys.default.forEach(currentKey => checkForMatch(currentKey));
+      };
     }
 
     return validateObjectProperties({
@@ -420,7 +434,7 @@ module.exports = function (params, ctx, f) {
   TestSuit.assertMatchBetween = function assertMatchBetween(payload, expectations) {
     const spy = sinon.spy();
     const rawPayload = payload?.toJSON?.() || payload;
-    const finalPayload = (rawPayload) ? JSON.parse(JSON.stringify(rawPayload)) : rawPayload;
+    const finalPayload = (rawPayload && (typeof rawPayload !== 'error')) ? JSON.parse(JSON.stringify(rawPayload)) : rawPayload;
 
     spy(finalPayload);
 
@@ -433,6 +447,8 @@ module.exports = function (params, ctx, f) {
       if (config?.APP?.TESTS_DEEP_MATCH_FALLBACK_STRATEGY) {
         return TestSuit.assertDeepMatchBetween(payload, expectations);
       }
+
+      console.log('THROW');
 
       throw err;
     }
@@ -466,9 +482,11 @@ module.exports = function (params, ctx, f) {
       throw contextualError;
     } catch (error) {
       try {
-        error.should.shallowDeepEqual(errorProperties)
+        TestSuit.assertDeepMatchBetween(error, errorProperties, {
+          shallowDeepEqual: true,
+        });
       } catch (mismatchError) {
-        contextualError.message = `${contextualError.message} > ${mismatchError.message.replace('\n', '')}`;
+        contextualError.message = `${contextualError.message} > ${mismatchError.message}`
 
         throw contextualError;
       }
