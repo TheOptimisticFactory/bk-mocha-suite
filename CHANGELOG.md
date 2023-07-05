@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.6"></a>
+## [1.23.6](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.5...v1.23.6) (2023-07-05)
+
+
+### 🔄 Notable changes
+
+* **Core**: Improved diff output when using deep match ([b722ed6](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/b722ed6) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.23.5"></a>
 ## [1.23.5](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.4...v1.23.5) (2022-11-15)
 
