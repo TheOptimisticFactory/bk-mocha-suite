@@ -486,7 +486,11 @@ module.exports = function (params, ctx, f) {
           shallowDeepEqual: true,
         });
       } catch (mismatchError) {
-        contextualError.message = `${contextualError.message} > ${mismatchError.message}`
+        const encounteredErrorDetails = Object.fromEntries(
+          Object.keys(errorProperties).map(property => [ property, error?.[property] ]),
+        );
+
+        contextualError.message = `${contextualError.message} > ${mismatchError.message}\n\nEncountered error: ${JSON.stringify(encounteredErrorDetails, null, 2)}`;
 
         throw contextualError;
       }
