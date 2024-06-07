@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.7"></a>
+## [1.23.7](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.6...v1.23.7) (2024-06-07)
+
+
+### 🔄 Notable changes
+
+* **Core**: Improved diff output when validating properties of error ([075db5b](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/075db5b) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.23.6"></a>
 ## [1.23.6](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.5...v1.23.6) (2023-07-05)
 
