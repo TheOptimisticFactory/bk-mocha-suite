@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.8"></a>
+## [1.23.8](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.7...v1.23.8) (2024-08-22)
+
+
+
+
 <a name="1.23.7"></a>
 ## [1.23.7](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.6...v1.23.7) (2024-06-07)
 

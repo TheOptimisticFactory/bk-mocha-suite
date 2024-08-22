@@ -1,6 +1,6 @@
 {
   "name": "@joethefkingfrypan/bk-mocha-suite",
-  "version": "1.23.7",
+  "version": "1.23.8",
   "description": "Suite for your mocha tests. Originally forked from https://github.com/muonjs/mocha-suit",
   "main": "app.js",
   "scripts": {
@@ -27,7 +27,7 @@
   "dependencies": {
     "error-stack-parser": "2.0.6",
     "underscore": "^1.10.2",
-    "yn": ">=2.X"
+    "yn": ">=2.X, <5.X"
   },
   "types": "./mocha-suit.d.ts",
   "devDependencies": {
