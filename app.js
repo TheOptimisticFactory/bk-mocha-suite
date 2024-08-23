@@ -346,7 +346,12 @@ module.exports = function (params, ctx, f) {
 
   TestSuit.assertDeepMatchBetween = function assertDeepMatchBetween(payload, expectations, options) {
     const rawPayload = payload?.toJSON?.() || payload;
-    const finalPayload = (rawPayload && (typeof rawPayload !== 'error')) ? JSON.parse(JSON.stringify(rawPayload)) : rawPayload;
+    const isError = Boolean(rawPayload instanceof Error);
+
+    const finalPayload = (rawPayload && !isError)
+      ? JSON.parse(JSON.stringify(rawPayload))
+      : rawPayload;
+
     const isObject = Boolean(finalPayload !== null && typeof finalPayload === 'object' && !Array.isArray(finalPayload));
     const spy = sinon.spy();
 
@@ -369,6 +374,12 @@ module.exports = function (params, ctx, f) {
     const checkIsObject = element => Boolean(element !== null && !Array.isArray(element) && typeof element === 'object');
 
     const validateObjectProperties = ({ currentExpectations, currentReference, parents }) => {
+      const getCompleteKey = key => {
+        const parentPrefix = (parents.length) ? `${parents.join('.')}.` : '';
+
+        return `${parentPrefix}${key || '<root>'}`;
+      }
+
       const checkForMatch = currentKey => {
         const referenceValue = (currentKey) ? currentReference?.[currentKey] : currentReference;
         const expectedValue = (currentKey) ? currentExpectations?.[currentKey] : currentExpectations;
@@ -386,21 +397,24 @@ module.exports = function (params, ctx, f) {
               : sinon.assert.calledWithMatch(spy, expectedValue)
           }
         } catch (error) {
-          const parentPrefix = (parents.length) ? `${parents.join('.')}.` : '';
-          const completeKey = `${parentPrefix}${currentKey || '<root>'}`;
-
-          error.message = `Mismatch on property '${completeKey}' >\nFOUND:\n\t${currentKey}: ${JSON.stringify(referenceValue)}\n\nEXPECTED:\n\t${currentKey}: ${JSON.stringify(expectedValue)}`;
+          error.message = `Mismatch on property '${getCompleteKey(currentKey)}' >\nFOUND:\n\t${currentKey}: ${JSON.stringify(referenceValue)}\n\nEXPECTED:\n\t${currentKey}: ${JSON.stringify(expectedValue)}`;
 
           throw error;
         }
       }
 
+
+      const isError = Boolean(currentReference instanceof Error);
       const keys = {
         default: [],
         nested: [],
       };
 
-      const finalKeys = Object.keys(currentReference || {}).sort().reduce((results, currentKey) => {
+      const referenceKeys = (!isError)
+        ? Object.keys(currentReference || {}).sort()
+        : Object.getOwnPropertyNames(currentReference).sort();
+
+      const finalKeys = referenceKeys.reduce((results, currentKey) => {
         const targetArray = (checkIsArray(currentReference[currentKey]) || checkIsObject(currentReference[currentKey]))
           ? results.nested
           : results.default;
@@ -447,8 +461,6 @@ module.exports = function (params, ctx, f) {
       if (config?.APP?.TESTS_DEEP_MATCH_FALLBACK_STRATEGY) {
         return TestSuit.assertDeepMatchBetween(payload, expectations);
       }
-
-      console.log('THROW');
 
       throw err;
     }
