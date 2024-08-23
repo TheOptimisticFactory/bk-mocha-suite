@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.10"></a>
+## [1.23.10](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.9...v1.23.10) (2024-08-23)
+
+
+### ✴️ Bug Fixes
+
+* **Core**: Corrected minor typo in unwanted keys assessment ([3fbd30b](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/3fbd30b) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.23.9"></a>
 ## [1.23.9](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.8...v1.23.9) (2024-08-23)
 
