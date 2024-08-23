@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.9"></a>
+## [1.23.9](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.8...v1.23.9) (2024-08-23)
+
+
+### 🔄 Notable changes
+
+* **Core**: Disallowed unwanted object properties by default ([e90afba](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/e90afba) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+* **Core**: Improved error properties validation ([557655d](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/557655d) - [TheOptimisticFactory](https://github.com/TheOptimisticFactory))
+
+
+
 <a name="1.23.8"></a>
 ## [1.23.8](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.7...v1.23.8) (2024-08-22)
 
