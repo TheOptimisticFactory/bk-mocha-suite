@@ -416,13 +416,13 @@ module.exports = function (params, ctx, f) {
 
       const expectedKeys = Object.keys(currentExpectations || {}).sort();
 
-      if (expectedKeys.length > referenceKeys) {
+      if (expectedKeys.length > referenceKeys.length) {
         const setOfReferenceKeys = new Set(referenceKeys);
         const unwantedPaths = expectedKeys
           .filter(key => !setOfReferenceKeys.has(key))
           .map(currentKey => getCompleteKey(currentKey));
 
-        throw new Error(`Found unwanted object properties  > ${unwantedPaths.join(', ')}`)
+        throw new Error(`Found unwanted object properties > ${unwantedPaths.join(', ')}`)
       }
 
       const finalKeys = referenceKeys.reduce((results, currentKey) => {
