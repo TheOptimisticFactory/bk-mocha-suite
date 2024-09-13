@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.11"></a>
+## [1.23.11](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.10...v1.23.11) (2024-09-13)
+
+
+### 🔄 Notable changes
+
+* **Core**: Improved handling of function not throwing the expected error ([1d8cf20](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/1d8cf20))
+
+
+
 <a name="1.23.10"></a>
 ## [1.23.10](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.9...v1.23.10) (2024-08-23)
 
