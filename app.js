@@ -480,7 +480,7 @@ module.exports = function (params, ctx, f) {
 
   TestSuit.expectMatchBetween = (...params) => TestSuit.assertMatchBetween(...params);
   TestSuit.expectRejectionMessage = async function expectRejection(handler, errorMessage = null) {
-    const contextualError = new Error(`Mismatching error properties`);
+    const contextualError = new Error(`Mismatching error message`);
 
     try {
       await handler();
@@ -504,6 +504,10 @@ module.exports = function (params, ctx, f) {
 
       throw contextualError;
     } catch (error) {
+      if (error.message.includes('Handler finished without throwing any error')) {
+        throw error;
+      }
+
       try {
         TestSuit.assertDeepMatchBetween(error, errorProperties, {
           shallowDeepEqual: true,
