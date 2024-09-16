@@ -403,27 +403,28 @@ module.exports = function (params, ctx, f) {
         }
       }
 
-
       const isError = Boolean(currentReference instanceof Error);
-      const keys = {
-        default: [],
-        nested: [],
-      };
-
       const referenceKeys = (!isError)
         ? Object.keys(currentReference || {}).sort()
         : Object.getOwnPropertyNames(currentReference).sort();
 
-      const expectedKeys = Object.keys(currentExpectations || {}).sort();
+      if (!sinon.match.isMatcher(currentExpectations)) {
+        const expectedKeys = Object.keys(currentExpectations || {}).sort();
 
-      if (expectedKeys.length > referenceKeys.length) {
-        const setOfReferenceKeys = new Set(referenceKeys);
-        const unwantedPaths = expectedKeys
-          .filter(key => !setOfReferenceKeys.has(key))
-          .map(currentKey => getCompleteKey(currentKey));
+        if (expectedKeys.length > referenceKeys.length) {
+          const setOfReferenceKeys = new Set(referenceKeys);
+          const unwantedPaths = expectedKeys
+            .filter(key => !setOfReferenceKeys.has(key))
+            .map(currentKey => getCompleteKey(currentKey));
 
-        throw new Error(`Found unwanted object properties > ${unwantedPaths.join(', ')}`)
+          throw new Error(`Found unwanted object properties > ${unwantedPaths.join(', ')}`)
+        }
       }
+
+      const keys = {
+        default: [],
+        nested: [],
+      };
 
       const finalKeys = referenceKeys.reduce((results, currentKey) => {
         const targetArray = (checkIsArray(currentReference[currentKey]) || checkIsObject(currentReference[currentKey]))
