@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.12"></a>
+## [1.23.12](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.11...v1.23.12) (2024-09-16)
+
+
+### 🔄 Notable changes
+
+* **Core**: Improved diff handling when expectations is a sinon matcher ([f0a170f](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/f0a170f))
+
+
+
 <a name="1.23.11"></a>
 ## [1.23.11](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.10...v1.23.11) (2024-09-13)
 
