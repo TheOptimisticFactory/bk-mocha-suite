@@ -397,9 +397,25 @@ module.exports = function (params, ctx, f) {
               : sinon.assert.calledWithMatch(spy, expectedValue)
           }
         } catch (error) {
-          error.message = `Mismatch on property '${getCompleteKey(currentKey)}' >\nFOUND:\n\t${currentKey}: ${JSON.stringify(referenceValue)}\n\nEXPECTED:\n\t${currentKey}: ${JSON.stringify(expectedValue)}`;
+          let finalError = error;
 
-          throw error;
+          if (currentReference !== referenceValue) {
+            try {
+              const parentSpy = sinon.spy();
+
+              parentSpy(currentReference);
+
+              (parentSpy.should?.have?.been?.calledWithMatch)
+                ? parentSpy.should.have.been.calledWithMatch(currentExpectations)
+                : sinon.assert.calledWithMatch(spy, currentExpectations)
+            } catch (parentError) {
+              finalError = parentError;
+            }
+          }
+
+          finalError.message = `Mismatch on property '${getCompleteKey(currentKey)}' >\nFOUND:\n\t${currentKey}: ${JSON.stringify(referenceValue)}\n\nEXPECTED:\n\t${currentKey}: ${JSON.stringify(expectedValue)}`;
+
+          throw finalError;
         }
       }
 
