@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.23.13"></a>
+## [1.23.13](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.12...v1.23.13) (2025-04-15)
+
+
+### 🔄 Notable changes
+
+* **Core**: Highlighted parent diffs upon detecting property conflict ([8cf7854](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/8cf7854))
+
+
+
 <a name="1.23.12"></a>
 ## [1.23.12](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.11...v1.23.12) (2024-09-16)
 
