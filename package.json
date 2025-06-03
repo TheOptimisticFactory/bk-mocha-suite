@@ -25,16 +25,16 @@
   },
   "homepage": "https://github.com/TheOptimisticFactory/bk-mocha-suite#readme",
   "dependencies": {
-    "error-stack-parser": "2.0.6",
-    "underscore": "^1.10.2",
+    "error-stack-parser": "2.1.4",
+    "underscore": "1.13.7",
     "yn": ">=2.X, <5.X"
   },
   "types": "./mocha-suit.d.ts",
   "devDependencies": {
-    "@joethefkingfrypan/bk-standard-version": "5.2.0",
+    "@joethefkingfrypan/bk-standard-version": "5.3.0",
     "@types/dirty-chai": "2.X",
     "chai-better-shallow-deep-equal": "1.X",
-    "chai": "4.2.0",
+    "chai": "4.X",
     "chalk": "4.X",
     "dirty-chai": "2.X",
     "config": "3.X",
@@ -44,11 +44,11 @@
     "should": "^13.2.3"
   },
   "peerDependencies": {
-    "@types/dirty-chai": "2.X",
-    "chai-better-shallow-deep-equal": "1.X",
-    "config": "3.X",
-    "dirty-chai": "2.X",
-    "mocha": ">=3.X <11.X",
+    "@types/dirty-chai": ">=2.X",
+    "chai-better-shallow-deep-equal": ">=1.X",
+    "config": ">=3.X",
+    "dirty-chai": ">=2.X",
+    "mocha": ">=3.X",
     "sinon": ">=7.X"
   }
 }
