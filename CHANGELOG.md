@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.24.0"></a>
+## [1.24.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.13...v1.24.0) (2025-06-03)
+
+
+### ✅ Features
+
+* **Package**: Relaxed peer dependency version constraints ([a971607](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/a971607))
+
+
+
 <a name="1.23.13"></a>
 ## [1.23.13](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.12...v1.23.13) (2025-04-15)
 
