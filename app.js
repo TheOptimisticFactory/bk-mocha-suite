@@ -4,6 +4,7 @@ const { assert, expect } = require('chai');
 const chalk = require('chalk');
 const config = require('config');
 const ErrorStackParser = require('error-stack-parser');
+const jsonSafeStringify = require('json-stringify-safe');
 const sinon = require('sinon');
 
 var fRegCheck = /^function\s+\(\S+?\)/;
@@ -48,7 +49,7 @@ const red = input => chalk.keyword('red').bold(input);
 const reportMissingField = (params, name) => {
   const formatedStacktrace = ErrorStackParser.parse(new Error());
   const sourceLine = formatedStacktrace[2].source.trim();
-  const prettyPayload = JSON.stringify(params, null, 2);
+  const prettyPayload = jsonSafeStringify(params, null, 2);
 
   console.error(red('Detected broken Suite factory instantiation'));
   console.error(red(`Field "${name}" is mandatory but got\n`));
@@ -349,7 +350,7 @@ module.exports = function (params, ctx, f) {
     const isError = Boolean(rawPayload instanceof Error);
 
     const finalPayload = (rawPayload && !isError)
-      ? JSON.parse(JSON.stringify(rawPayload))
+      ? JSON.parse(jsonSafeStringify(rawPayload))
       : rawPayload;
 
     const isObject = Boolean(finalPayload !== null && typeof finalPayload === 'object' && !Array.isArray(finalPayload));
@@ -364,7 +365,7 @@ module.exports = function (params, ctx, f) {
           ? spy.should.have.been.calledWithMatch(expectations)
           : sinon.assert.calledWithMatch(spy, expectations)
       } catch (error) {
-        error.message = `Mismatch on provided values >\nFOUND:\n\t${JSON.stringify(finalPayload)}\n\nEXPECTED:\n\t${JSON.stringify(expectations)}`;
+        error.message = `Mismatch on provided values >\nFOUND:\n\t${jsonSafeStringify(finalPayload)}\n\nEXPECTED:\n\t${jsonSafeStringify(expectations)}`;
 
         throw error;
       }
@@ -413,7 +414,7 @@ module.exports = function (params, ctx, f) {
             }
           }
 
-          finalError.message = `Mismatch on property '${getCompleteKey(currentKey)}' >\nFOUND:\n\t${currentKey}: ${JSON.stringify(referenceValue)}\n\nEXPECTED:\n\t${currentKey}: ${JSON.stringify(expectedValue)}`;
+          finalError.message = `Mismatch on property '${getCompleteKey(currentKey)}' >\nFOUND:\n\t${currentKey}: ${jsonSafeStringify(referenceValue)}\n\nEXPECTED:\n\t${currentKey}: ${jsonSafeStringify(expectedValue)}`;
 
           throw finalError;
         }
@@ -476,7 +477,7 @@ module.exports = function (params, ctx, f) {
   TestSuit.assertMatchBetween = function assertMatchBetween(payload, expectations) {
     const spy = sinon.spy();
     const rawPayload = payload?.toJSON?.() || payload;
-    const finalPayload = (rawPayload && (typeof rawPayload !== 'error')) ? JSON.parse(JSON.stringify(rawPayload)) : rawPayload;
+    const finalPayload = (rawPayload && (typeof rawPayload !== 'error')) ? JSON.parse(jsonSafeStringify(rawPayload)) : rawPayload;
 
     spy(finalPayload);
 
@@ -534,7 +535,7 @@ module.exports = function (params, ctx, f) {
           Object.keys(errorProperties).map(property => [ property, error?.[property] ]),
         );
 
-        contextualError.message = `${contextualError.message} > ${mismatchError.message}\n\nEncountered error: ${JSON.stringify(encounteredErrorDetails, null, 2)}`;
+        contextualError.message = `${contextualError.message} > ${mismatchError.message}\n\nEncountered error: ${jsonSafeStringify(encounteredErrorDetails, null, 2)}`;
 
         throw contextualError;
       }
