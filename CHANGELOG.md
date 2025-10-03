@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+## [2.0.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.24.0...v2.0.0) (2025-10-03)
+
+
+### ✅ Features
+
+* **Core**: Added support of circular JSON structures ([9a0e4f0](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/9a0e4f0))
+
+
+
 <a name="1.24.0"></a>
 ## [1.24.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.23.13...v1.24.0) (2025-06-03)
 
