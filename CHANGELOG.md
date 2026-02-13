@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v2.0.0...v2.1.0) (2026-02-13)
+
+
+### 🔄 Notable changes
+
+* **Dependencies**: Removed restriction on compatible config versions ([3c432cb](https://github.com/TheOptimisticFactory/bk-mocha-suite/commit/3c432cb))
+
+
+
 <a name="2.0.0"></a>
 ## [2.0.0](https://github.com/TheOptimisticFactory/bk-mocha-suite/compare/v1.24.0...v2.0.0) (2025-10-03)
 
